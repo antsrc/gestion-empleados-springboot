@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link rel="stylesheet" type="text/css" href="/styles/error.css">
+</head>
+<body>
+    <h1>Error</h1>
+    <p>
+        Causa: <strong th:text="${mensaje != null ? mensaje : 'Error desconocido'}"></strong>
+    </p>
+
+    <a th:href="@{/}">Volver al Inicio</a>
+</body>
+</html>

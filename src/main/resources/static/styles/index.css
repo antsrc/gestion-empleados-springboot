@@ -1,0 +1,41 @@
+body {
+	font-family: sans-serif;
+	background-color: #f4f4f4;
+	color: #333;
+	margin: 0;
+	padding: 20px;
+}
+
+h1 {
+	text-align: center;
+	color: #2c3e50;
+}
+
+table {
+	min-width: 33%;
+	margin: 0 auto;
+	border-collapse: collapse;
+	margin: 0 auto;
+}
+
+td {
+	padding: 15px;
+	text-align: center;
+	border: 1px solid #ddd;
+	background-color: #fff;
+	transition: background-color 0.3s;
+}
+
+td:hover {
+	background-color: #e8f1f2;
+}
+
+a {
+	text-decoration: none;
+	color: #3498db;
+	font-weight: bold;
+}
+
+a:hover {
+	color: #2980b9;
+}

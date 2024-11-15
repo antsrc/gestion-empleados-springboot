@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Salario del Empleado</title>
+<link rel="stylesheet" type="text/css" href="/styles/paginadatos.css">
+</head>
+<body>
+	<h1>Salario del Empleado</h1>
+	<p>
+		DNI: <strong th:text="${dni}"></strong>
+	</p>
+	<p th:if="${salario != null}">
+		Salario: <strong
+			th:text="${#numbers.formatInteger(salario, 3, 'POINT')}"> </strong> <strong>u.m.</strong>
+	</p>
+	<p th:if="${salario == null}">Empleado no encontrado</p>
+
+	<form action="#" th:action="@{empresa/nominas/buscar}" method="get">
+		<button type="submit">Buscar otro DNI</button>
+	</form>
+
+	<a th:href="@{/}">Volver al Inicio</a>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscar Salario</title>
+    <link rel="stylesheet" type="text/css" href="/styles/paginaform.css">
+</head>
+<body>
+    <h1>Obtener Salario de Empleado</h1>
+    <form th:action="@{/empresa/nominas/resultado-busqueda}" method="post">
+        <label for="dni">DNI del Empleado:</label>
+        <input type="text" name="dni" required>
+        <input type="hidden" name="opcion" value="mostrarSalario">
+        <input type="submit" value="Buscar">
+    </form>
+    <a th:href="@{/}">Volver al Inicio</a>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Empleados</title>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/styles/paginadatos.css}">
+</head>
+<body>
+
+	<p th:if="${exito}" class="exito">El empleado se actualizó
+		correctamente</p>
+
+	<div th:if="${#lists.isEmpty(empleados)}">
+		<p class="sinResultado">No se encontraron empleados</p>
+	</div>
+
+	<h1>Lista de Empleados</h1>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Nombre</th>
+				<th>DNI</th>
+				<th>Sexo</th>
+				<th>Categoría</th>
+				<th>Años Trabajados</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="empleado : ${empleados}">
+				<td th:text="${empleado.nombre}">Nombre</td>
+				<td th:text="${empleado.dni}">DNI</td>
+				<td th:text="${empleado.sexo}">Sexo</td>
+				<td th:text="${empleado.categoria}">Categoría</td>
+				<td th:text="${empleado.antiguedad}">Años Trabajados</td>
+				<td>
+					<form
+						th:action="@{/empresa/empleados/modificar/{dni}(dni=${empleado.dni})}"
+						method="get" style="display: inline;">
+						<input type="submit" value="Modificar">
+					</form>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<form th:action="@{/empresa/empleados/filtrar}" method="get">
+		<button type="submit">Filtrar</button>
+	</form>
+
+	<a th:href="@{/}">Volver al Inicio</a>
+</body>
+</html>
