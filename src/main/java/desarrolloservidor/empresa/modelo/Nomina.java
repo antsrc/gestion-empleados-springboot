@@ -7,36 +7,30 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+
 
 @Entity
 @Table(name = "nominas")
+@Getter
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Nomina {
 
     @Id
     @NotNull
     @Column(name = "empleado_dni", insertable = false, updatable = false)
+    @NonNull
     private String dni;
 
     @NotNull
-    private Integer sueldo;
-    
+    @NonNull
+    private Double sueldo;
+     
     @OneToOne
     private Empleado empleado;
-    
-    public Nomina() {
-    }
-    
-    public Nomina(String dni, Integer sueldo) {
-    	this.dni = dni;
-    	this.sueldo = sueldo;
-    }
-   
-    public String getDni() {
-        return dni;
-    }
-
-    public Integer getSueldo() {
-        return sueldo;
-    }
 
 }

@@ -17,26 +17,29 @@ public class EmpleadoController {
 	@Autowired
 	private EmpleadoService empleadoService;
 	
-	@GetMapping("/listar")
-	public String listarEmpleados(Model model) {
+	@GetMapping("/lista")
+	public String listaEmpleados(@RequestParam(required = false) String cambios, Model model) {
 		List<Empleado> empleados = empleadoService.obtenerEmpleados();
 		model.addAttribute("empleados", empleados);
-		return "listarEmpleados";
+	    if (cambios != null && cambios.equals("guardados")) {
+	        model.addAttribute("exito", true);
+	    }
+		return "listaEmpleados";
 	}
 
-	@GetMapping("/filtrar")
+	@GetMapping("/buscar")
 	public String buscarEmpleados() {
-		return "filtrarEmpleados";
+		return "buscarEmpleados";
 	}
 
-	@PostMapping("/aplicar-filtros")
+	@PostMapping("/resultado-busqueda")
 	public String mostrarEmpleadosFiltrados(@RequestParam(required = false) String nombre,
 			@RequestParam(required = false) String dni, @RequestParam(required = false) String sexo,
 			@RequestParam(required = false) Integer categoria, @RequestParam(required = false) Integer antiguedad,
 			Model model) {
 		List<Empleado> empleados = empleadoService.obtenerEmpleadosFiltrados(nombre, dni, sexo, categoria, antiguedad);
 		model.addAttribute("empleados", empleados);
-		return "listarEmpleados";
+		return "listaEmpleados";
 	}
 
 	@GetMapping("/modificar/{dni}")
@@ -46,12 +49,11 @@ public class EmpleadoController {
 		return "modificarEmpleado";
 	}
 
-	@PostMapping("/guardar-cambios")
+	@PostMapping("/enviar-cambios")
 	public String enviarCambios(@RequestParam String dni, @RequestParam String nombre, @RequestParam String sexo,
 	                             @RequestParam Integer categoria, @RequestParam Integer antiguedad, Model model) {
 	    empleadoService.actualizarEmpleado(dni, nombre, sexo, categoria, antiguedad);
-	    model.addAttribute("exito", true);
-	    return listarEmpleados(model);
+	    return "redirect:/empresa/empleados/lista?cambios=guardados";
 	}
 
 }

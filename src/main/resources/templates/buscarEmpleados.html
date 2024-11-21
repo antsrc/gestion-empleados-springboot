@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Buscar Empleados</title>
+<link rel="stylesheet" type="text/css" href="/styles/paginaform.css">
+</head>
+<body>
+	<h1>Buscar Empleados</h1>
+	<form th:action="@{/empresa/empleados/resultado-busqueda}" method="post">
+		<label for="nombre">Nombre (contiene):</label> <input type="text"
+			name="nombre" id="nombre" placeholder="Cualquiera" /><br> <label
+			for="dni">DNI (contiene):</label> <input type="text" name="dni"
+			id="dni" placeholder="Cualquiera" /><br> <label for="sexo">Sexo:</label>
+		<select name="sexo" id="sexo">
+			<option value="">Cualquiera</option>
+			<option value="M">Masculino</option>
+			<option value="F">Femenino</option>
+		</select><br> <label for="categoria">Categoría:</label> <input
+			type="number" name="categoria" id="categoria"
+			placeholder="Cualquiera" /><br> <label for="antiguedad">Años
+			Trabajados:</label> <input type="number" name="antiguedad" id="antiguedad"
+			placeholder="Cualquiera" /><br> <input type="hidden"
+			name="opcion" value="mostrarEmpleadosFiltrados" /> <input
+			type="submit" value="Buscar" />
+	</form>
+	<a th:href="@{/}">Volver al Inicio</a>
+</body>
+</html>

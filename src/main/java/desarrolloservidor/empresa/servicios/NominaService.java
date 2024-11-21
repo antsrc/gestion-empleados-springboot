@@ -14,12 +14,7 @@ public class NominaService {
     @Autowired
     private NominaRepository nominaRepository;
 
-    public Nomina obtenerNomina(String dni) {
-        Optional<Nomina> nominaOpt = nominaRepository.findById(dni);
-        return nominaOpt.orElse(null);
-    }
-
-    public Integer obtenerSalario(String dni) {
+    public Double obtenerSalario(String dni) {
     	Optional<Nomina> nominaOpt = nominaRepository.findById(dni);
         return nominaOpt.map(Nomina::getSueldo).orElse(null);
     }

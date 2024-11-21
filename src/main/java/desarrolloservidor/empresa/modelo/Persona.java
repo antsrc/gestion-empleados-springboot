@@ -2,14 +2,14 @@ package desarrolloservidor.empresa.modelo;
 
 public interface Persona {
 
-    String getNombre();
+	String getNombre();
 
-    void setNombre(String nombre);
+	void setNombre(String nombre);
 
-    String getDni();
+	String getDni();
 
-    String getSexo();
+	String getSexo();
 
-    void setSexo(String sexo);
-    
+	void setSexo(String sexo);
+
 }

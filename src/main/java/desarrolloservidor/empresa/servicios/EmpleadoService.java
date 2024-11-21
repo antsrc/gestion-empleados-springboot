@@ -26,27 +26,13 @@ public class EmpleadoService {
 
 	public List<Empleado> obtenerEmpleadosFiltrados(String nombre, String dni, String sexo, Integer categoria,
 			Integer antiguedad) {
-		List<Empleado> empleadosFiltrados = (!nombre.trim().isEmpty())
-				? empleadoRepository.findByNombreContainingIgnoreCase(nombre)
-				: empleadoRepository.findAll();
 
-		if (!dni.trim().isEmpty()) {
-			empleadosFiltrados.retainAll(empleadoRepository.findByDniContainingIgnoreCase(dni));
-		}
+		nombre = nombre.trim().isEmpty() ? null : nombre.trim();
+		dni = dni.trim().isEmpty() ? null : dni.trim();
+		sexo = sexo.isEmpty() ? null : sexo;
 
-		if (!sexo.trim().isEmpty()) {
-			empleadosFiltrados.retainAll(empleadoRepository.findBySexo(sexo.charAt(0)));
-		}
+		return empleadoRepository.obtenerEmpleadosFiltrados(nombre, dni, sexo, categoria, antiguedad);
 
-		if (categoria != null) {
-			empleadosFiltrados.retainAll(empleadoRepository.findByCategoria(categoria));
-		}
-
-		if (antiguedad != null) {
-			empleadosFiltrados.retainAll(empleadoRepository.findByAntiguedad(antiguedad));
-		}
-
-		return empleadosFiltrados;
 	}
 
 	public boolean actualizarEmpleado(String dni, String nombre, String sexo, Integer categoria, Integer antiguedad) {
@@ -59,8 +45,7 @@ public class EmpleadoService {
 			empleado.setAntiguedad(antiguedad);
 			empleadoRepository.save(empleado);
 			return true;
-		} else {
-			return false;
 		}
+		return false;
 	}
 }

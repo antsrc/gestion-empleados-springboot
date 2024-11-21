@@ -25,7 +25,7 @@ public class NominaController {
 
     @PostMapping("/resultado-busqueda")
     public String mostrarSalario(@RequestParam("dni") String dni, Model model) {
-        Integer salario = nominaService.obtenerSalario(dni);
+        Double salario = nominaService.obtenerSalario(dni);
         model.addAttribute("salario", salario);
         model.addAttribute("dni", dni);
         return "mostrarSalario";

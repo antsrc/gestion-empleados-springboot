@@ -8,26 +8,25 @@
 <body>
 	<h1>Modificar Empleado</h1>
 
-	<form th:action="@{/empresa/empleados/guardar-cambios}" method="post">
+	<form th:action="@{/empresa/empleados/enviar-cambios}" method="post">
 		<label for="dni">DNI:</label> <input class="soloLectura" type="text"
 			name="dni" id="dni" th:value="${empleado.dni}" readonly><br>
 
-		<br> <label for="nombre">Nombre:</label> <input type="text"
-			name="nombre" id="nombre" th:value="${empleado.nombre}" required><br>
+		<label for="nombre">Nombre:</label> <input type="text" name="nombre"
+			id="nombre" th:value="${empleado.nombre}" required><br>
 
-		<br> <label for="sexo">Sexo:</label> <select name="sexo"
-			id="sexo">
+		<label for="sexo">Sexo:</label> <select name="sexo" id="sexo">
 			<option value="M" th:selected="${empleado.sexo == 'M'}">Masculino</option>
 			<option value="F" th:selected="${empleado.sexo == 'F'}">Femenino</option>
-		</select><br> <br> <label for="categoria">Categoría:</label> <input
+		</select><br> <label for="categoria">Categoría:</label> <input
 			type="number" name="categoria" id="categoria"
-			th:value="${empleado.categoria}" required><br> <br>
-		<label for="antiguedad">Años Trabajados:</label> <input type="number"
+			th:value="${empleado.categoria}" required><br> <label
+			for="antiguedad">Años Trabajados:</label> <input type="number"
 			name="antiguedad" id="antiguedad" th:value="${empleado.antiguedad}"
-			required><br> <br> <input type="hidden"
-			name="opcion" value="enviarCambios"> <input type="submit"
-			value="Enviar Cambios"> <a th:href="@{/}">Volver
-			al Inicio</a>
+			required><br> <input type="hidden" name="opcion"
+			value="enviarCambios"> <input type="submit"
+			value="Enviar Cambios"> <a th:href="@{/}">Volver al
+			Inicio</a>
 	</form>
 </body>
 </html>

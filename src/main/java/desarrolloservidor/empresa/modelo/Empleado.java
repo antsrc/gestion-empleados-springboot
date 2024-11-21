@@ -8,87 +8,49 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.AccessLevel;
 
 @Entity
 @Table(name = "empleados")
+@Getter
+@Setter
+@NoArgsConstructor
+@RequiredArgsConstructor
 public class Empleado implements Persona {
 
-    @Id
-    @NotNull
-    private String dni;
+	@Id
+	@NotNull
+	@NonNull
+	@Setter(AccessLevel.NONE)
+	private String dni;
 
-    @NotNull
-    private String nombre;
+	@NotNull
+	@NonNull
+	private String nombre;
 
-    @NotNull
-    @Pattern(regexp = "^[FfMm]$")
-    private String sexo;
+	@NotNull
+	@Pattern(regexp = "^[FfMm]$")
+	@NonNull
+	private String sexo;
 
-    @NotNull
-    @Min(value = 1)
-    @Max(value = 10)
-    private Integer categoria;
+	@NotNull
+	@Min(value = 1)
+	@Max(value = 10)
+	@NonNull
+	private Integer categoria;
 
-    @NotNull
-    @Min(value = 0)
-    private Integer antiguedad;
-    
-    @OneToOne(mappedBy = "empleado")
-    private Nomina nomina;
+	@NotNull
+	@Min(value = 0)
+	@NonNull
+	private Integer antiguedad;
 
-    public Empleado() {
-    }
+	@OneToOne(mappedBy = "empleado")
+	@Setter(AccessLevel.NONE)
+	private Nomina nomina;
 
-    public Empleado(String nombre, String dni, String sexo, Integer categoria, Integer antiguedad) {
-        this.nombre = nombre;
-        this.dni = dni;
-        this.sexo = sexo;
-        this.categoria = categoria;
-        this.antiguedad = antiguedad;
-    }
-
-    public Empleado(String nombre, String dni, String sexo) {
-        this(nombre, dni, sexo, 1, 0);
-    }
-
-    @Override
-    public String getNombre() {
-        return nombre;
-    }
-
-    @Override
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    @Override
-    public String getDni() {
-        return dni;
-    }
-
-    @Override
-    public String getSexo() {
-        return sexo;
-    }
-
-    @Override
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
-
-    public Integer getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(Integer categoria) {
-        this.categoria = categoria;
-    }
-
-    public Integer getAntiguedad() {
-        return antiguedad;
-    }
-
-    public void setAntiguedad(Integer antiguedad) {
-        this.antiguedad = antiguedad;
-    }
 }

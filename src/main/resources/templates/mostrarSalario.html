@@ -12,11 +12,12 @@
 	</p>
 	<p th:if="${salario != null}">
 		Salario: <strong
-			th:text="${#numbers.formatInteger(salario, 3, 'POINT')}"> </strong> <strong>u.m.</strong>
+			th:text="${#numbers.formatDecimal(salario, 1, 'POINT', 2, 'COMMA')}"></strong>
+		<strong>u.m.</strong>
 	</p>
 	<p th:if="${salario == null}">Empleado no encontrado</p>
 
-	<form action="#" th:action="@{empresa/nominas/buscar}" method="get">
+	<form action="#" th:action="@{/empresa/nominas/buscar}" method="get">
 		<button type="submit">Buscar otro DNI</button>
 	</form>
 
